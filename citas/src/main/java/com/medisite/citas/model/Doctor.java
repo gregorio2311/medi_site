@@ -1,23 +1,13 @@
-package com.medisite.medicos.model;
+package com.medisite.citas.model;
 
-import jakarta.persistence.*;
 import java.util.List;
 
-@Entity
 public class Doctor {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String specialty;
     private String city;
-
-    @ElementCollection
-    @CollectionTable(name = "doctor_availability", joinColumns = @JoinColumn(name = "doctor_id"))
     private List<Availability> availability;
-
-    // Getters and setters
 
     public Long getId() {
         return id;
@@ -59,7 +49,8 @@ public class Doctor {
         this.availability = availability;
     }
 
-    @Embeddable
+    // Getters and setters
+
     public static class Availability {
         private String day;
         private String startTime;

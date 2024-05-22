@@ -16,6 +16,11 @@ public class DoctorControllerImpl {
     @Autowired
     private DoctorService doctorService;
 
+    @GetMapping("/specialties")
+    public ResponseEntity<List<String>> getAllSpecialties() {
+        return new ResponseEntity<>(doctorService.findAllSpecialties(), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<Doctor>> getAllDoctors() {
         return new ResponseEntity<>(doctorService.findAll(), HttpStatus.OK);
@@ -32,21 +37,18 @@ public class DoctorControllerImpl {
     }
 
     @GetMapping("/availability")
-    public ResponseEntity<List<Doctor>> getDoctorsByAvailability(@RequestParam String time) {
-        return new ResponseEntity<>(doctorService.findByAvailability(time), HttpStatus.OK);
-    }
-
-    @GetMapping("/specialties")
-    public ResponseEntity<List<String>> getAllSpecialties() {
-        return new ResponseEntity<>(doctorService.findAllSpecialties(), HttpStatus.OK);
+    public ResponseEntity<List<Doctor>> getDoctorsByAvailability(@RequestParam String day, @RequestParam String startTime, @RequestParam String endTime, @RequestParam Long doctorId) {
+        return new ResponseEntity<>(doctorService.findByAvailability(day, startTime, endTime, doctorId), HttpStatus.OK);
     }
 
     @GetMapping("/filter")
     public ResponseEntity<List<Doctor>> getDoctorsBySpecialtyAndCityAndAvailability(
-            @RequestParam(required = false) String specialty,
-            @RequestParam(required = false) String city,
-            @RequestParam(required = false) String availability) {
-        return new ResponseEntity<>(doctorService.findBySpecialtyAndCityAndAvailability(specialty, city, availability), HttpStatus.OK);
+            @RequestParam String specialty,
+            @RequestParam String city,
+            @RequestParam String day,
+            @RequestParam String startTime,
+            @RequestParam String endTime) {
+        return new ResponseEntity<>(doctorService.findBySpecialtyAndCityAndAvailability(specialty, city, day, startTime, endTime), HttpStatus.OK);
     }
 
     @PostMapping
