@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
@@ -16,7 +17,7 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public List<Doctor> findAll() {
-        return doctorRepository.findAll();
+        return (List<Doctor>) doctorRepository.findAll();
     }
 
     @Override
@@ -30,12 +31,42 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<Doctor> findByAvailability(String availability) {
-        return doctorRepository.findByAvailabilityContaining(availability);
+    public List<Doctor> findByAvailability(String time) {
+        return doctorRepository.findByAvailability(time);
+    }
+
+    @Override
+    public List<String> findAllSpecialties() {
+        return doctorRepository.findAllSpecialties();
+    }
+
+    @Override
+    public List<Doctor> findBySpecialtyAndCityAndAvailability(String specialty, String city, String availability) {
+        return doctorRepository.findBySpecialtyAndCityAndAvailability(specialty, city, availability);
     }
 
     @Override
     public Doctor save(Doctor doctor) {
         return doctorRepository.save(doctor);
+    }
+
+    @Override
+    public Doctor updateDoctor(Long id, Doctor doctor) {
+        Optional<Doctor> existingDoctor = doctorRepository.findById(id);
+        if (existingDoctor.isPresent()) {
+            Doctor updatedDoctor = existingDoctor.get();
+            updatedDoctor.setName(doctor.getName());
+            updatedDoctor.setCity(doctor.getCity());
+            updatedDoctor.setSpecialty(doctor.getSpecialty());
+            updatedDoctor.setAvailability(doctor.getAvailability());
+            return doctorRepository.save(updatedDoctor);
+        } else {
+            throw new RuntimeException("Doctor not found with id " + id);
+        }
+    }
+
+    @Override
+    public void deleteDoctor(Long id) {
+        doctorRepository.deleteById(id);
     }
 }

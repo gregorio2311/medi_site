@@ -1,24 +1,21 @@
 package com.medisite.medicos.controller;
 
 import com.medisite.medicos.model.Doctor;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
-@RequestMapping("/doctors")
 public interface DoctorController {
-    @GetMapping
+
     List<Doctor> getAllDoctors();
 
-    @GetMapping("/specialty/{specialty}")
-    List<Doctor> getDoctorsBySpecialty(@PathVariable String specialty);
+    List<Doctor> getDoctorsBySpecialty(String specialty);
 
-    @GetMapping("/city/{city}")
-    List<Doctor> getDoctorsByCity(@PathVariable String city);
+    List<Doctor> getDoctorsByCity(String city);
 
-    @GetMapping("/availability")
-    List<Doctor> getDoctorsByAvailability(@RequestParam String availability);
+    List<Doctor> getDoctorsByAvailability(String start, String end);
 
-    @PostMapping
-    Doctor createDoctor(@RequestBody Doctor doctor);
+    List<String> getAllSpecialties();
+
+    List<Doctor> getDoctorsBySpecialtyAndCityAndAvailability(String specialty, String city, String availability);
+
+    Doctor createDoctor(Doctor doctor);
 }
