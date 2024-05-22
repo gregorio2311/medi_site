@@ -1,5 +1,6 @@
 package com.medisite.medicos.service.impl;
 
+import com.medisite.medicos.utils.exception.DoctorNotFoundException;
 import com.medisite.medicos.model.Doctor;
 import com.medisite.medicos.repository.DoctorRepository;
 import com.medisite.medicos.service.DoctorService;
@@ -61,12 +62,16 @@ public class DoctorServiceImpl implements DoctorService {
             updatedDoctor.setAvailability(doctor.getAvailability());
             return doctorRepository.save(updatedDoctor);
         } else {
-            throw new RuntimeException("Doctor not found with id " + id);
+            throw new DoctorNotFoundException("Doctor not found with id " + id);
         }
     }
 
     @Override
     public void deleteDoctor(Long id) {
-        doctorRepository.deleteById(id);
+        if (doctorRepository.existsById(id)) {
+            doctorRepository.deleteById(id);
+        } else {
+            throw new DoctorNotFoundException("Doctor not found with id " + id);
+        }
     }
 }
