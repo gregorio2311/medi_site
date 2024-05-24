@@ -1,4 +1,4 @@
-package com.medisite.medicos.security;
+package com.medisite.medicos.utils.security;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

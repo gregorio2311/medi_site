@@ -1,4 +1,4 @@
-package com.medisite.medicos.security;
+package com.medisite.medicos.utils.security;
 
 import com.medisite.medicos.repository.UserRepository;
 import com.medisite.medicos.repository.entity.User;

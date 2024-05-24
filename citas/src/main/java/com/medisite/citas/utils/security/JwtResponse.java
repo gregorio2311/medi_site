@@ -1,4 +1,4 @@
-package com.medisite.citas.security;
+package com.medisite.citas.utils.security;
 
 import java.io.Serializable;
 

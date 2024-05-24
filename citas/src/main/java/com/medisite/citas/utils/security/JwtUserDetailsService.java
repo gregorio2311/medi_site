@@ -1,4 +1,4 @@
-package com.medisite.citas.security;
+package com.medisite.citas.utils.security;
 
 import com.medisite.citas.repository.UserRepository;
 import com.medisite.citas.repository.entity.User;

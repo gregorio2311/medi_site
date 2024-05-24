@@ -1,4 +1,4 @@
-package com.medisite.citas.security;
+package com.medisite.citas.utils.security;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package com.medisite.citas.config;
+package com.medisite.citas.utils.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,6 +1,5 @@
 package com.medisite.medicos.service.impl;
 
-import com.medisite.medicos.utils.exception.DoctorNotFoundException;
 import com.medisite.medicos.model.Doctor;
 import com.medisite.medicos.repository.DoctorRepository;
 import com.medisite.medicos.service.DoctorService;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
