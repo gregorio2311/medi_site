@@ -1,4 +1,4 @@
-package com.medisite.citas.config;
+package com.medisite.citas.utils.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
